@@ -9,7 +9,7 @@ server:
 spring:
   mvc:
     view:
-      prefix: /WEB-INF/views/
+      prefix: /WEB-INF/views/ # root
       suffix: .jsp
       
   datasource:

@@ -4,12 +4,25 @@ import com.cos.photogramstart.domain.user.User;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 
 public class SignupDto {
 
+
+    @Size(min=2, max=20)
+    @NotBlank
     private String username;
+
+    @NotBlank
     private String password;
+
+    @NotBlank
     private String email;
+
+    @NotBlank
     private String name;
 
     public String getUsername() {
@@ -43,6 +56,7 @@ public class SignupDto {
     public void setName(String name) {
         this.name = name;
     }
+
 
     public User toEntity(){
         return User.builder()

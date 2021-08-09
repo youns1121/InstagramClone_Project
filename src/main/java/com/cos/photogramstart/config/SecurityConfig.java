@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration //IOC
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    //비밀번호 해쉬 섪정
     @Bean
     public BCryptPasswordEncoder encoder(){ //패스워드를 해쉬값으로 저장하기 위해 사용
         return new BCryptPasswordEncoder();
@@ -26,10 +27,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll() //모든 요청 허용
                 .and()
                     .formLogin()// 폼로그인 설정, 일반적인 로그인 방식 즉 로그인 폼 페이지와 로그인 처리 성공 실패 등을 사용하겠다는 의미입니다.
-                    .loginPage("/auth/signin") //사용자가 따로 만든 로그인 페이지를 사용하려고 할때 설정합니다.
+                    .loginPage("/auth/signin") //사용자가 따로 만든 로그인 페이지를 사용하려고 할때 설정합니다., GET
+                    .loginProcessingUrl("/auth/signin") //POST
                     .defaultSuccessUrl("/"); //로그인이 완료 되면 가는 경로, 정상적으로 인증성공 했을 경우 이동하는 페이지를 설정합니다.
-
-
 
 
     }
