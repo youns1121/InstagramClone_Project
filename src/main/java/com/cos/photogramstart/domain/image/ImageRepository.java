@@ -2,5 +2,5 @@ package com.cos.photogramstart.domain.image;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface imageRepository extends JpaRepository<image, Long> {
+public interface ImageRepository extends JpaRepository<Image, Long> {
 }
