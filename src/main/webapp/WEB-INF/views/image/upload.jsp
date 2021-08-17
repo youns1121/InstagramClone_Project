@@ -10,6 +10,7 @@
                
                <!--사진업로드 로고-->
                 <div class="upload-top">
+
                     <a href="home.html" class="">
                         <img src="/images/logo.jpg" alt="">
                     </a>

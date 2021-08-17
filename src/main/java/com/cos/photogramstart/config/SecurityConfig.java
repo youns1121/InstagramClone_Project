@@ -23,7 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable(); //csrf 비활성화
         http.authorizeRequests()        // 리소스(URL)의 권한한 설정 특정 리소스의 접근 허용
 
-                .antMatchers("/", "/user/**", "/image/**", "/subscribe/**", "/comment/**").authenticated() // 그외 나머지 리소스들은 무조건 인증을 완료 해야 접근이 가능, 인증이 필요한 접속 리소스
+                .antMatchers("/", "/user/**", "/image/**", "/subscribe/**", "/comment/**", "/api/**").authenticated() // 그외 나머지 리소스들은 무조건 인증을 완료 해야 접근이 가능, 인증이 필요한 접속 리소스
                 .anyRequest().permitAll() //모든 요청 허용
                 .and()
                     .formLogin()// 폼로그인 설정, 일반적인 로그인 방식 즉 로그인 폼 페이지와 로그인 처리 성공 실패 등을 사용하겠다는 의미입니다.
