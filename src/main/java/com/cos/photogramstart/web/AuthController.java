@@ -1,6 +1,6 @@
 package com.cos.photogramstart.web;
 
-import com.cos.photogramstart.domain.user.User;
+import com.cos.photogramstart.domain.User;
 import com.cos.photogramstart.dto.auth.SignupDto;
 import com.cos.photogramstart.handler.ex.CustomvalidationException;
 import com.cos.photogramstart.service.AuthService;

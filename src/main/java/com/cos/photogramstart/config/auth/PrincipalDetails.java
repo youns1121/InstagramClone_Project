@@ -1,7 +1,6 @@
 package com.cos.photogramstart.config.auth;
 
-import com.cos.photogramstart.domain.user.User;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.cos.photogramstart.domain.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;

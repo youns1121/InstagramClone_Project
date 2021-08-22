@@ -1,5 +1,6 @@
-package com.cos.photogramstart.domain.subscribe;
+package com.cos.photogramstart.repository;
 
+import com.cos.photogramstart.domain.Subscribe;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +15,12 @@ public interface SubscribeRepository extends JpaRepository<Subscribe, Long> {
     @Query(value="DELETE FROM subscribe WHERE from_user_id = :fromUserId AND to_user_id =:toUserId", nativeQuery = true) // 파라미터 변수 =: 컬럼
     void mUnSubscribe(Long fromUserId, Long toUserId);
 
+
+    @Query(value = "select count(*) from subscribe where from_user_id = :principalId and to_user_id = :pageUserId", nativeQuery = true)
+    Long mSubscribeState(Long principalId, Long pageUserId);
+
+    @Query(value = "select count(*) from subscribe where from_user_id = :pageUserId", nativeQuery = true) //구독한 수
+    Long mSubscribeCount(Long pageUserId);
 
 
 }

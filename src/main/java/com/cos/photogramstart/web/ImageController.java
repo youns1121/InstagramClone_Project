@@ -2,6 +2,7 @@ package com.cos.photogramstart.web;
 
 import com.cos.photogramstart.config.auth.PrincipalDetails;
 import com.cos.photogramstart.dto.auth.image.ImageUploadDto;
+import com.cos.photogramstart.handler.ex.CustomvalidationException;
 import com.cos.photogramstart.service.ImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -35,6 +36,10 @@ public class ImageController {
     @PostMapping("/image")
     public String imageUpload(ImageUploadDto imageUploadDto, @AuthenticationPrincipal PrincipalDetails principalDetails ){
         // @AuthenticationPrincipal PrincipalDetails principalDetails 유저정보
+
+        if(imageUploadDto.getFile().isEmpty()) {
+            throw new CustomvalidationException("이미지가 첨부되지 않았습니다", null);
+        }
 
         //서비스 호출
         imageService.사진업로드(imageUploadDto, principalDetails);

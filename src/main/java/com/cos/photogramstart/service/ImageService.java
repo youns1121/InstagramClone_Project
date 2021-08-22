@@ -1,14 +1,14 @@
 package com.cos.photogramstart.service;
 
 import com.cos.photogramstart.config.auth.PrincipalDetails;
-import com.cos.photogramstart.domain.image.Image;
-import com.cos.photogramstart.domain.image.ImageRepository;
+import com.cos.photogramstart.domain.Image;
+import com.cos.photogramstart.repository.ImageRepository;
 import com.cos.photogramstart.dto.auth.image.ImageUploadDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
+import javax.transaction.Transactional;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,7 +23,7 @@ public class ImageService {
     @Value("${file.path}")// .yml의 file:path:
     private String uploadFolder;
 
-
+    @Transactional
     public void 사진업로드(ImageUploadDto imageUploadDto, PrincipalDetails principalDetails){
         UUID uuid = UUID.randomUUID(); // uuid 네트워크 상에서 고유성이 보장되는 id를 만들기 위한 표준 규약
         String imageFileName = uuid+"_" + imageUploadDto.getFile().getOriginalFilename(); // 1.jpg
@@ -42,6 +42,6 @@ public class ImageService {
         Image image = imageUploadDto.toEntity(imageFileName, principalDetails.getUser());
         Image imageEntity = imageRepository.save(image);
 
-        System.out.println(imageEntity);
+      //    System.out.println(imageEntity);
     }
 }

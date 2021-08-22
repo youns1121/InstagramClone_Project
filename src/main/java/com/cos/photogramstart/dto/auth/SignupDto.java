@@ -1,10 +1,7 @@
 package com.cos.photogramstart.dto.auth;
 
-import com.cos.photogramstart.domain.user.User;
-import lombok.Getter;
-import lombok.Setter;
+import com.cos.photogramstart.domain.User;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 

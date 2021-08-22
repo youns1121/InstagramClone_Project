@@ -1,17 +1,22 @@
-package com.cos.photogramstart.domain.user;
+package com.cos.photogramstart.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import com.cos.photogramstart.domain.Image;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Builder
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class User {
 
@@ -42,6 +47,15 @@ public class User {
 
     private String role; //권한
 
+    // 나는 연관관계의 주인이 아님, 테이블에 컬럼을 만들지마
+    // User를 Select 할때 해당 User id로 등록된 image들을 다 가져와;
+    // Lazy = User를 Select 할때 해당 User id로 등록된 Image들을 가져오지마 - 대신 getImages() 함수의 image 들이  호출될 때 가져와!!
+    // Eager = User를 Select 할때 해당 User id로 등록된 Image들을 전부 Join 해서 가져와
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user"})
+    private List<Image> images = new ArrayList<>(); //양방향 매핑
+
+
 
 
     private LocalDateTime createDate;
@@ -51,21 +65,5 @@ public class User {
         this.createDate = LocalDateTime.now();
     }
 
-    public User() {
-    }
 
-    public User(Long id, String username, String password, String name, String website, String bio, String email, String phone, String gender, String profileImageUrl, String role, LocalDateTime createDate) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.website = website;
-        this.bio = bio;
-        this.email = email;
-        this.phone = phone;
-        this.gender = gender;
-        this.profileImageUrl = profileImageUrl;
-        this.role = role;
-        this.createDate = createDate;
-    }
 }

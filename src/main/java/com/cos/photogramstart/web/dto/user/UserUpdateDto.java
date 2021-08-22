@@ -1,7 +1,7 @@
-package com.cos.photogramstart.web.dto;
+package com.cos.photogramstart.web.dto.user;
 
 
-import com.cos.photogramstart.domain.user.User;
+import com.cos.photogramstart.domain.User;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;

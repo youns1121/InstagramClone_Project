@@ -1,7 +1,7 @@
 package com.cos.photogramstart.dto.auth.image;
 
-import com.cos.photogramstart.domain.image.Image;
-import com.cos.photogramstart.domain.user.User;
+import com.cos.photogramstart.domain.Image;
+import com.cos.photogramstart.domain.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
