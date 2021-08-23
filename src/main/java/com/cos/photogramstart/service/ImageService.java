@@ -6,12 +6,15 @@ import com.cos.photogramstart.repository.ImageRepository;
 import com.cos.photogramstart.dto.auth.image.ImageUploadDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -19,6 +22,15 @@ import java.util.UUID;
 public class ImageService {
 
     private final ImageRepository imageRepository;
+
+
+    @Transactional(readOnly = true) // 영속성 컨텍스트 변경 감지해서, 더티체킹, flush 반영
+    public Page<Image> 이미지스토리(Long principalId, Pageable pageable){
+
+        Page<Image> images = imageRepository.mStroy(principalId, pageable);
+
+        return images;
+    }
 
     @Value("${file.path}")// .yml의 file:path:
     private String uploadFolder;

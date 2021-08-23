@@ -1,5 +1,6 @@
 package com.cos.photogramstart.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,7 +21,9 @@ public class Image {
     private String caption; // ex)오늘 나 너무 피곤해
     private String postImageUrl; // 사진을 전송받아서 그 사진을 서ㅏ버에 특정 폴더에 저장 -DB에 저장된 경로를 insert
 
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @JsonIgnoreProperties({"images"})
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
