@@ -1,5 +1,6 @@
 package com.cos.photogramstart.domain;
 
+
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,24 +15,24 @@ import java.time.LocalDateTime;
 @Entity
 
 @Table(uniqueConstraints = { @UniqueConstraint
-        (name = "subscribe_uk",
-                columnNames = {"from_user_id", "to_user_id"}
+        (name = "likes_uk",
+                columnNames = {"image_id", "user_id"}
         )
-    }
+}
 )
-
-public class Subscribe {
+public class Likes { // N
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 증가 전략이 데이터베이스를 따라간다
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "from_user_id")
-    private User fromUser; // 구독할때
 
     @ManyToOne
-    @JoinColumn(name = "to_user_id")
-    private User toUser; //구독받을때
+    @JoinColumn(name = "image_id")
+    private Image image; // 1
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     private LocalDateTime createDate;
 
@@ -39,4 +40,6 @@ public class Subscribe {
     public void createDate(){
         this.createDate = LocalDateTime.now();
     }
+
+
 }

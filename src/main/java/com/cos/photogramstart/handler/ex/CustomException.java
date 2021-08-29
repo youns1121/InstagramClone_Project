@@ -1,6 +1,5 @@
 package com.cos.photogramstart.handler.ex;
 
-import java.util.Map;
 
 public class CustomException extends RuntimeException {
 
